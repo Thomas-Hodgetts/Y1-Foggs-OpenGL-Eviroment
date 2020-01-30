@@ -1,0 +1,13 @@
+﻿  GLUTCallbacks.cpp
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\GLUTCallbacks.cpp(37,27): error C2065: 'key': undeclared identifier
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\GLUTCallbacks.cpp(37,32): error C2065: 'x': undeclared identifier
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\GLUTCallbacks.cpp(37,35): error C2065: 'y': undeclared identifier
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\GLUTCallbacks.cpp(38,2): error C2143: syntax error: missing ';' before '}'
+  HelloGL.cpp
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\HelloGL.cpp(3,10): error C2143: syntax error: missing ';' before 'HelloGL::{ctor}'
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\HelloGL.cpp(3,17): error C4430: missing type specifier - int assumed. Note: C++ does not support default-int
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\HelloGL.cpp(14,48): error C2664: 'void glutKeyboardFunc(void (__cdecl *)(unsigned char,int,int))': cannot convert argument 1 from 'void (__cdecl *)(void)' to 'void (__cdecl *)(unsigned char,int,int)'
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\HelloGL.cpp(14,34): message : None of the functions with this name in scope match the target type
+E:\University\Foggs\OpenGL Eviroment\OpenGL Eviroment\GL\freeglut_std.h(470,26): message : see declaration of 'glutKeyboardFunc'
+  Main.cpp
+  Generating Code...
