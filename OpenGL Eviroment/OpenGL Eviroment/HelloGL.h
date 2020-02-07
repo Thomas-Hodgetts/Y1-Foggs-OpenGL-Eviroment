@@ -4,7 +4,7 @@
 #include "GL/GLU.h"
 #include "gl/GL.h"
 #include "GLUTCallBacks.h"
-
+#include "Cube3D.h"
 
 #define REFRESHRATE 16
 
@@ -16,13 +16,18 @@ public:
 	HelloGL(int arg, char* argv[]); //constructor
 	~HelloGL(void); //destructor
 
+	struct Camera
+	{
+
+	};
 	void Display();
 	void DrawRectangle();
 	void DrawTriangle();
 	void Update();
 	void KeyboardUpdate(unsigned char key, int x, int y);
-
+	Cube3D* cube3D;
 private:
 	float rotation;
+	Camera* camera;
 };
 
