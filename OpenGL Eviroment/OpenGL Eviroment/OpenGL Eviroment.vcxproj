@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{65185975-FF01-4305-A016-339E5492F524}</ProjectGuid>
     <RootNamespace>OpenGLEviroment</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -145,11 +145,14 @@
     <ClCompile Include="GLUTCallbacks.cpp" />
     <ClCompile Include="HelloGL.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="SceneObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cube3D.h" />
     <ClInclude Include="GLUTCallBacks.h" />
     <ClInclude Include="HelloGL.h" />
+    <ClInclude Include="SceneObject.h" />
+    <ClInclude Include="Structures.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

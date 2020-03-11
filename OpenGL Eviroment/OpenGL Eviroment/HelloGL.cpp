@@ -1,18 +1,39 @@
 #include "HelloGL.h"
+#include <stdlib.h>
 
 void keyInput(unsigned char key, int x, int y) {
 	return;
 }
 
+
+
 HelloGL::HelloGL(int argc, char* argv[])
 {
-	cube3D = new Cube3D;
+
+	/*
+	for (int i = 0; i < 200; i++)
+	{ 
+		float x = rand() % 400 / 10.0f - 20.f;
+		float y = rand() % 200 / 10.0f - 10.f;
+		float z = -rand() % 1000 / 10.0f;
+		cube3D[i] = new Cube3D(_mesh, x, y, z);
+	}
+	*/
+	for (int i = 0; i < 200; i++)
+	{
+		cube3D[i] = new Cube3D(( _mesh, (rand() % 400) / 10.f) - 20.f, ((rand() % 200) / 10.f, -(rand() % 1000) / 10.f));
+	}
+	camera = new Camera;
+	camera->eye.x = 0.f; camera->eye.y = 0.f; camera->eye.z = 1.f;
+	camera->centre.x = 0.f; camera->centre.y = 0.f; camera->centre.z = 0.f;	
+	camera->up.x = 0.f; camera->up.y = 1.f; camera->up.z = 0.f;
 	rotation = 0.0f;	
 	GLUTCallbacks::Init(this);
 	glutInit(&argc, argv);
 	glutInitWindowSize(800, 800);
 	glutInitWindowPosition(100, 100);
-	glutInitDisplayMode(GLUT_DOUBLE);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
+	glEnable(GL_DEPTH_TEST);
 	glutCreateWindow("Simple OpenGL Program");
 	glutKeyboardFunc(keyInput);
 	glutDisplayFunc(GLUTCallbacks::Display);
@@ -20,6 +41,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	//glutKeyboardFunc(GLUTCallbacks::KeyboardUpdate);
 	glMatrixMode(GL_PROJECTION); //loads a matrix mode
 	glLoadIdentity(); //loads identity matrix
+	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->centre.x, camera->centre.y, camera->centre.z, camera->up.x, camera->up.y, camera->up.z);
 	glViewport(0, 0, 800, 800); //sets the viewport to the entire window
 	gluPerspective(45, 1, 0, 1000);
 	glMatrixMode(GL_MODELVIEW);
@@ -27,19 +49,32 @@ HelloGL::HelloGL(int argc, char* argv[])
 	GLUTCallbacks::Timer(REFRESHRATE);
 }	
 
+HelloGL::~HelloGL()
+{
+	delete camera;
+	for (int i = 0; i < 200; i++)
+	{
+		delete cube3D[i];
+	}
+}
+
 float angle = 0.f;
 
 void HelloGL::Display()
 
 {
 
-	glClear(GL_COLOR_BUFFER_BIT); //clears the scene
-	cube3D->DrawCube(angle);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clears the scene
+	for (int i = 0; i < 200; i++)
+	{
+		//cube3D[i]->DrawCube(angle);
+		cube3D[i]->Load("cube.txt");
+	}
 	//draws Triangle
 	glFlush(); //flushes the scene to the GPU
 	glutSwapBuffers();
 	
-	angle += 144.4f;
+	angle += 0.4f;
 
 }
 

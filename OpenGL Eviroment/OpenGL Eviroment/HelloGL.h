@@ -1,10 +1,8 @@
 #pragma once
 #include <Windows.h>
-#include "GL/freeglut.h"
-#include "GL/GLU.h"
-#include "gl/GL.h"
 #include "GLUTCallBacks.h"
 #include "Cube3D.h"
+#include "Structures.h"
 
 #define REFRESHRATE 16
 
@@ -16,18 +14,19 @@ public:
 	HelloGL(int arg, char* argv[]); //constructor
 	~HelloGL(void); //destructor
 
-	struct Camera
-	{
-
-	};
 	void Display();
 	void DrawRectangle();
 	void DrawTriangle();
 	void Update();
 	void KeyboardUpdate(unsigned char key, int x, int y);
-	Cube3D* cube3D;
+	Cube3D* cube3D[200];
+	void InitObjects();
+	void InitGL(int argc, char* argv[]);
 private:
 	float rotation;
 	Camera* camera;
+	Mesh* _mesh;
 };
+
+
 
