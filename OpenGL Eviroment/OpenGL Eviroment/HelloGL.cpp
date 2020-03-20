@@ -1,8 +1,31 @@
 #include "HelloGL.h"
 #include <stdlib.h>
 
-void keyInput(unsigned char key, int x, int y) {
-	return;
+void HelloGL::KeyboardUpdate(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 'd':
+		camera->eye.x += 0.5f;
+		camera->centre.x += 0.5f;
+		camera->up.x += 0.5f;
+		break;
+	case 's':
+		camera->eye.z -= 0.5f;
+		camera->centre.z -= 0.5f;
+		camera->up.z -= 0.5f;
+		break;
+	case 'w':
+		camera->eye.z += 0.5f;
+		camera->centre.z += 0.5f;
+		camera->up.z += 0.5f;
+		break;
+	case 'a':
+		camera->eye.x -= 0.5f;
+		camera->centre.x -= 0.5f;
+		camera->up.x -= 0.5f;
+		break;
+	}
 }
 
 
@@ -10,19 +33,11 @@ void keyInput(unsigned char key, int x, int y) {
 HelloGL::HelloGL(int argc, char* argv[])
 {
 
-	/*
-	for (int i = 0; i < 200; i++)
-	{ 
-		float x = rand() % 400 / 10.0f - 20.f;
-		float y = rand() % 200 / 10.0f - 10.f;
-		float z = -rand() % 1000 / 10.0f;
-		cube3D[i] = new Cube3D(_mesh, x, y, z);
-	}
-	*/
 	for (int i = 0; i < 200; i++)
 	{
-		cube3D[i] = new Cube3D(( _mesh, (rand() % 400) / 10.f) - 20.f, ((rand() % 200) / 10.f, -(rand() % 1000) / 10.f));
+		cube3D[i] = new Cube3D( _mesh, ((rand() % 400) / 10.f) - 20.f, ((rand() % 200) / 10.f), (-(rand() % 1000) / 10.f));
 	}
+
 	camera = new Camera;
 	camera->eye.x = 0.f; camera->eye.y = 0.f; camera->eye.z = 1.f;
 	camera->centre.x = 0.f; camera->centre.y = 0.f; camera->centre.z = 0.f;	
@@ -35,7 +50,7 @@ HelloGL::HelloGL(int argc, char* argv[])
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH);
 	glEnable(GL_DEPTH_TEST);
 	glutCreateWindow("Simple OpenGL Program");
-	glutKeyboardFunc(keyInput);
+	glutKeyboardFunc(GLUTCallbacks::KeyboardUpdate);
 	glutDisplayFunc(GLUTCallbacks::Display);
 	glutTimerFunc(REFRESHRATE, GLUTCallbacks::Timer, REFRESHRATE);
 	//glutKeyboardFunc(GLUTCallbacks::KeyboardUpdate);
@@ -67,13 +82,12 @@ void HelloGL::Display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); //clears the scene
 	for (int i = 0; i < 200; i++)
 	{
-		//cube3D[i]->DrawCube(angle);
+		cube3D[i]->DrawCube(angle);
 		cube3D[i]->Load("cube.txt");
 	}
 	//draws Triangle
 	glFlush(); //flushes the scene to the GPU
 	glutSwapBuffers();
-	
 	angle += 0.4f;
 
 }
@@ -117,6 +131,7 @@ void HelloGL::Update()
 {
 	glutPostRedisplay();
 	glLoadIdentity();
+	CameraUpdate();
 	rotation += 0.5f;
 	if (rotation >= 360.0f)
 	{
@@ -124,14 +139,7 @@ void HelloGL::Update()
 	}
 }
 
-void HelloGL::KeyboardUpdate(unsigned char key, int x, int y)
+void HelloGL::CameraUpdate()
 {
-	{
-		if (key == 'd')
-		{
-			rotation = +0.5;
-		}
-
-	}
+	gluLookAt(camera->eye.x, camera->eye.y, camera->eye.z, camera->centre.x, camera->centre.y, camera->centre.z, camera->up.x, camera->up.y, camera->up.z);
 }
-

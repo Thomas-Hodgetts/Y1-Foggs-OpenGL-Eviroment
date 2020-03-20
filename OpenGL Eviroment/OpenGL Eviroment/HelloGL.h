@@ -22,6 +22,7 @@ public:
 	Cube3D* cube3D[200];
 	void InitObjects();
 	void InitGL(int argc, char* argv[]);
+	void CameraUpdate();
 private:
 	float rotation;
 	Camera* camera;

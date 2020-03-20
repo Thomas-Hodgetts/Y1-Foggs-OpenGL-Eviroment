@@ -4,9 +4,6 @@
 #include <string>
 #include <iostream>
 #include <Windows.h>
-#include "GL/freeglut.h"
-#include "GL/GLU.h"
-#include "gl/GL.h"
 #include "GLUTCallBacks.h"
 #include "Structures.h"
 #include "SceneObject.h"
@@ -28,10 +25,10 @@ private:
 
 	static Vertex* indexedVertices[];
 	static Colour* indexedColors[];
-	static GLushort* indices[];
+    static GLushort* indices[];
+		
 
-
-	static int numVertices, numColours, numIndices;
+	//static int numVertices, numColours, numIndices;
 	Vector3 m_position;
 	GLfloat _rotation;
 };

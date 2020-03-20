@@ -8,3 +8,12 @@ SceneObject::~SceneObject()
 {
 
 }
+
+void SceneObject::Draw()
+{
+
+}
+void SceneObject::Update()
+{
+
+}

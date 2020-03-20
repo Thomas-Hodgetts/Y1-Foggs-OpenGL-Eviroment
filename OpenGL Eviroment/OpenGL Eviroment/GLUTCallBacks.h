@@ -9,5 +9,5 @@ namespace GLUTCallbacks
 
 	void Timer(int preferredRefresh);
 
-	void KeyboardUpdate();
+	void KeyboardUpdate(unsigned char key, int x, int y);
 }

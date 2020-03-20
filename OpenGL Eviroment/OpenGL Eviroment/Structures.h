@@ -1,6 +1,8 @@
 #pragma once
+#include "GL/freeglut.h"
 #include "GL/GLU.h"
 #include "gl/GL.h"
+
 
 struct Vector3
 {

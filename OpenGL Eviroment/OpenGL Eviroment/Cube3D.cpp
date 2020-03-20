@@ -1,5 +1,7 @@
 #include "Cube3D.h"
 
+//Vertex* Cube3D::indexedVertices = nullptr;
+
 
 Cube3D::Cube3D(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 {
@@ -9,6 +11,9 @@ Cube3D::Cube3D(Mesh* mesh, float x, float y, float z) : SceneObject(mesh)
 	m_position.y = y;
 	m_position.z = z;
 	Load("E:/University/Foggs/Fresh copy/Y1 - Foggs - OpenGL - Eviroment/OpenGL Eviroment/OpenGL Eviroment");
+	//numColours = 0;
+	//numIndices = 0;
+	//numVertices = 0;
 
 }
 
@@ -24,7 +29,7 @@ void Cube3D::DrawCube(float a)
 {
 
 	glPushMatrix();
-	//glTranslatef(m_position.x, m_position.y, m_position.z);
+	glTranslatef(m_position.x, m_position.y, m_position.z);
 	glTranslatef(0.f, 0.f, -5.f);
 	glRotatef(a, 0.f, 1.f, 1.f);
 	glBegin(GL_TRIANGLES);
@@ -136,6 +141,7 @@ void Cube3D::roatation()
 
 bool Cube3D::Load(std::string path)
 {
+	/*
 	std::string file;
 	int lineNumber = 0;
 	std::ifstream inFile;
@@ -146,11 +152,9 @@ bool Cube3D::Load(std::string path)
 		std::cerr << "Can't open txt file " << path << std::endl;
 		return false;
 	}
+	inFile >> numVertices;
 
-	std::istringstream importFile;
-	//flushes the Fstream buffer into a string file for later manipulation.
-	importFile >> inFile.rdbuf();
-	//indexedVertices = new Vertex[numVertices];
+	indexedVertices = new Vertex[numVertices];
 	lineNumber++;
 	for (int i = 0; i < numVertices; i++)
 	{
@@ -159,5 +163,8 @@ bool Cube3D::Load(std::string path)
 		std::cout << numVertices << std::endl;
 	
 	}
+	inFile.close();
+	*/
+	return true;
 }
 
